@@ -1,0 +1,119 @@
+# Spam Email Detection Using Logistic Regression 
+
+# Import necessary libraries
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Load the dataset (replace 'your_dataset.csv' with the actual path to your dataset)
+df= pd.read_csv('C:/Users/abiei/Downloads/emails.csv', names=['Message', 'Category'])
+df
+
+data=df.where((pd.notnull(df)),'')
+
+data.head()
+
+data.info()
+
+data.shape
+
+x=data['Message']
+y=data["Category"]
+
+x
+
+y
+
+x_train,x_test,y_train,y_test= train_test_split(x,y, test_size=0.2, random_state =3)
+
+print(x.shape)
+print(x_train.shape)
+print(x_test.shape)
+
+print(y.shape)
+print(y_train.shape)
+print(y_test.shape)
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.model_selection import train_test_split
+
+# Assuming x_train, x_test, y_train, and y_test are already defined
+
+# Initialize TfidfVectorizer
+feature_extraction = TfidfVectorizer(min_df=1, stop_words='english', lowercase=True)
+
+# Fit and transform the training data
+x_train_features = feature_extraction.fit_transform(x_train)
+
+# Transform the test data
+x_test_features = feature_extraction.transform(x_test)
+
+# Now, you might want to check the data types and values in your y_train and y_test
+print("Before conversion:")
+print("y_train dtype:", y_train.dtype)
+print("y_train unique values:", set(y_train))
+
+print(x_train)
+
+print(y_Train)
+
+print(x_test)
+
+print(x_train_features)
+
+print(x_test_features)
+
+model = LogisticRegression()
+
+model.fit(x_train_features, y_train)
+
+prediction_on_traning_data = model.predict(x_train_features)
+accuracy_on_traning_data = accuracy_score(y_train,prediction_on_traning_data)
+
+print('Accuracy on training data: ', accuracy_on_traning_data)
+
+prediction_on_test_data = model.predict(x_test_features)
+prediction_on_test_data 
+
+accuracy_on_test_data = accuracy_score(y_test,prediction_on_test_data)
+
+print('Accuracy on test data: ', accuracy_on_test_data)
+
+#Testing with a spam mail
+input_your_mail = ["Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's "]
+
+input_data_features = feature_extraction.transform(input_your_mail )
+
+prediction = model.predict(input_data_features)
+
+print (prediction)
+
+if (prediction[0==1]):
+    print('Ham Mail')
+    
+else:
+    print('Spam Mail')
+
+#Testing with a Ham mail
+input_your_mail = ["Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat..."]
+
+input_data_features = feature_extraction.transform(input_your_mail )
+
+prediction = model.predict(input_data_features)
+
+print (prediction)
+
+if (prediction[0==1]):
+    print('Ham Mail')
+    
+else:
+    print('Spam Mail')
+
+*
