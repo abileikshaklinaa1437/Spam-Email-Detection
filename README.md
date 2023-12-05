@@ -8,7 +8,7 @@ ALGORITHM USED: Logistic Regression
 Logistic regression is a commonly used algorithm for binary classification tasks like spam detection.Logistic regression is a statistical method that is widely used for binary classification problems, such as spam email detection. In the context of spam email detection, the goal is to build a model that can classify emails into two categories: spam or not spam (ham).
 
 PACKAGES USED:
-1) TfidfVectorizer :
+1)TfidfVectorizer :
    The TfidfVectorizer is a feature extraction method commonly used in natural language processing and text mining. It is part of the scikit-learn library in Python. "TF-IDF" stands for Term Frequency-Inverse Document Frequency, and it is a numerical statistic that reflects the importance of a word in a document relative to a collection of documents (corpus).
    
 Term Frequency (TF): Measures how often a word appears in a document. It is calculated as the number of times a word appears in a document divided by the total number of words in that document.
